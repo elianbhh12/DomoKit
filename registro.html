@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <!-- index.html -->
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-sm bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h2 class="text-2xl font-bold mb-6 text-center">Registro de Usuarios</h2>
+      <form id="registerForm">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="registerEmail">
+            Correo Electrónico
+          </label>
+          <input id="registerEmail" type="email" placeholder="Correo electrónico" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="registerPassword">
+            Contraseña
+          </label>
+          <input id="registerPassword" type="password" placeholder="Contraseña" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="flex items-center justify-between">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Registrar
+          </button>
+        </div>
+      </form>
+    </div>
+  
+    <script>
+      // Obtener referencias a los elementos del formulario
+      const registerForm = document.getElementById('registerForm');
+  
+      // Manejar el evento de envío del formulario de registro
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+  
+        // Registrar al usuario con Firebase Authentication
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Registro exitoso
+            alert('Usuario registrado exitosamente');
+            // Redirigir a la vista deseada
+            window.location.href = 'vista.html';
+          })
+          .catch((error) => {
+            // Manejo de errores
+            alert(error.message);
+          });
+      });
+    </script>
+  </body>
+  
+    
+</body>
+</html>
